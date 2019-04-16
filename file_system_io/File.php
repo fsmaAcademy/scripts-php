@@ -14,13 +14,11 @@ class FileImpl {
   public function writeTxt($data) : void {
     if (!$this->diretory) {
       $file = fopen($this->name, 'a+');
-      echo "Arquivo criado sem diretorio\n";
     } else {
         if (!is_dir($this->diretory)) {
           mkdir($this->diretory);
         }
         $file = fopen($this->diretory . DIRECTORY_SEPARATOR . $this->name, 'a+');
-        echo "Arquivo criado com diretorio\n";
     }
     fwrite($file, $data."\r\n");
     fclose($file);
@@ -39,7 +37,6 @@ class FileImpl {
       $file = fopen($this->diretory . DIRECTORY_SEPARATOR . $this->name, 'w+');
     }
 
-    
     $headers = array();
     
     foreach ($datas[0] as $keys => $value) {
@@ -53,7 +50,6 @@ class FileImpl {
       foreach ($row as $key => $value) {
         array_push($colums, $value);
       }
-      var_dump($colums);
       fwrite($file, implode(';', $colums) . "\r\n");
     }
   
@@ -69,7 +65,7 @@ class FileImpl {
     }
   }
 
-  public function read() : void {
+  public function read() : array {
     // if ($this->diretory != NULL && is_dir($this->diretory)) {
     if (file_exists($this->name)) {
       $file = fopen($this->name, 'r');
@@ -85,7 +81,7 @@ class FileImpl {
       }
       fclose($file);
     }
-    json_encode($datas);
+    return $datas;
   }
 
 }
@@ -97,4 +93,4 @@ array_push($family, ['name' => 'Caroline Cunha', 'age'  => 29]);
 array_push($family, ['name' => 'Thalita Cunha', 'age'  => 29]);
 
 $file = new FileImpl('family.csv');
-$file->read();
+echo json_encode($file->read());
