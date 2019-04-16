@@ -84,13 +84,22 @@ class FileImpl {
     return $datas;
   }
 
+  public function upload() : void {
+
+  }
+
 }
 
-$family = array();
+// $family = array();
 
-array_push($family, ['name' => 'Thiago Cunha', 'age'  => 29]);
-array_push($family, ['name' => 'Caroline Cunha', 'age'  => 29]);
-array_push($family, ['name' => 'Thalita Cunha', 'age'  => 29]);
+// array_push($family, ['name' => 'Thiago Cunha', 'age'  => 29]);
+// array_push($family, ['name' => 'Caroline Cunha', 'age'  => 29]);
+// array_push($family, ['name' => 'Thalita Cunha', 'age'  => 29]);
 
-$file = new FileImpl('family.csv');
-echo json_encode($file->read());
+// $file = new FileImpl('family.csv');
+// echo json_encode($file->read());
+
+
+
+?>
+
